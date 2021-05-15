@@ -23,8 +23,8 @@
               <h4 class="h3 mb-3 font-weight-normal text-center">Sign in</h4>
               <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12 col-lg-12 mt-4">
                 <div class="form-group">
-                  <label for="inputEmail" class="sr-only">Email address</label>
-                  <input type="email" id="inputEmail" class="form-control" placeholder="Email address" name="email" required autofocus>
+                  <label for="inputEmail" class="sr-only">Username</label>
+                  <input type="text" id="inputEmail" class="form-control" placeholder="Username" name="email" required autofocus>
                 </div>
               </div>
               <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12 col-lg-12">

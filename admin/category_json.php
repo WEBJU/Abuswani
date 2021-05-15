@@ -21,4 +21,4 @@ $Cat = $category->getSubCategory($category_id);
 
 echo json_encode($Cat);
 ?>
- ?>
+ 

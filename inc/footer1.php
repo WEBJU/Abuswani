@@ -1,4 +1,5 @@
-</main>
+<!-- </body> -->
+<!-- </main> -->
 <footer>
     <div class="content-wrapper">
         <p>&copy; <?php echo  date('Y');  ?>, Abuswani</p>

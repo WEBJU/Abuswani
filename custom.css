@@ -49,9 +49,11 @@ header nav a {
 	color: #555555;
 	padding: 10px 10px;
 	margin: 0 10px;
+
 }
+
 header nav a:hover {
-	border-bottom: 1px solid #aaa;
+	border-bottom: 3px solid #aaa;
 }
 header .link-icons {
 	display: flex;
@@ -98,6 +100,7 @@ main .featured {
 	justify-content: center;
 	text-align: center;
 }
+
 main .featured h2 {
 	display: inline-block;
 	margin: 0;
@@ -156,7 +159,7 @@ main .recentlyadded .products .product .rrp, main .products .products-wrapper .p
 	text-decoration: line-through;
 }
 main .recentlyadded .products .product:hover img, main .products .products-wrapper .product:hover img {
-	transform: scale(1.05);
+	transform: scale(1.5,1.5);
 	transition: transform 1s;
 }
 main .recentlyadded .products .product:hover .name, main .products .products-wrapper .product:hover .name {
@@ -335,10 +338,30 @@ main .placeorder h1 {
 main .placeorder p {
 	text-align: center;
 }
+.paypal {
+	text-align: right;
+	padding-bottom: 40px;
+}
+
+.paypal button {
+	display: inline-block;
+	padding: 10px 20px 7px 20px;
+	background-color: #FFC439;
+	border-radius: 5px;
+	border: none;
+	cursor: pointer;
+	width: 215px;
+}
+.paypal button:hover {
+	background-color: #f3bb37;
+}
 footer {
 	position: absolute;
 	bottom: 0;
+	background: #304352;
+  color: #ffffff;
 	border-top: 1px solid #EEEEEE;
 	padding: 20px 0;
 	width: 100%;
+
 }

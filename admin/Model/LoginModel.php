@@ -7,10 +7,10 @@
       * @return array
       * @desc Returns a user record based on the method parameter....
     **/
-    public function fetchEmail(string $email) :array
+    public function fetchEmail(string $name) :array
     {
-      $this->query("SELECT * FROM user WHERE `email` = :email");
-      $this->bind('email', $email);
+      $this->query("SELECT * FROM user WHERE `name` = :name");
+      $this->bind('name', $name);
       $this->execute();
 
       $Email = $this->fetch();

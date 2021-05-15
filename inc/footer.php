@@ -9,13 +9,11 @@
 			<div class="col-md-12 col-sm-12">
 
                 <ul class="social-icon">
-                    <li><a href="#" class="fa fa-facebook wow fadeInUp" data-wow-delay="0.2s"></a></li>
-                    <li><a href="#" class="fa fa-twitter wow fadeInUp" data-wow-delay="0.4s"></a></li>
-                    <li><a href="#" class="fa fa-linkedin wow fadeInUp" data-wow-delay="0.6s"></a></li>
-                    <li><a href="#" class="fa fa-instagram wow fadeInUp" data-wow-delay="0.8s"></a></li>
-                    <li><a href="#" class="fa fa-google-plus wow fadeInUp" data-wow-delay="1.0s"></a></li>
+                    <li><a href="https://www.facebook.com/absalom.aswani.3" class="fa fa-facebook wow fadeInUp" target="_blank" data-wow-delay="0.2s"></a></li>
+                    <li><a href="https://twitter.com/Abuhx" class="fa fa-twitter wow fadeInUp" target="_blank" data-wow-delay="0.4s"></a></li>
+                    <li><a href="https://www.instagram.com/aswaniabsalom/" class="fa fa-instagram wow fadeInUp" target="_blank" data-wow-delay="0.8s"></a></li>
+										<li><a href="https://abuswani.deviantart.com" class="fa fa fa-deviantart wow fadeInUp" target="_blank" data-wow-delay="1.0s"></a></li>
                 </ul>
-
 				<p class="wow fadeInUp"  data-wow-delay="1s" >Copyright &copy;2020.Abuswani</p>
 
 			</div>
@@ -29,6 +27,24 @@
 
 	});
 </script> -->
+<script type="text/javascript">
+  function toggleMore(){
+    var points=document.getElementById("points");
+    var showMoreText=document.getElementById("moreText");
+    var showButton=document.getElementById("toggleText");
+    if (points.style.display==="none") {
+      showMoreText.style.display="none";
+      points.style.display="inline";
+      showButton.innerHTML="Show More";
+    }
+    else {
+      showMoreText.style.display="inline";
+      points.style.display="none";
+      showButton.innerHTML="Show less";
+    }
+  }
+</script>
+
 <!-- Back top -->
 <a href="#" class="go-top"><i class="fa fa-angle-up"></i></a>
 

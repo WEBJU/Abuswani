@@ -56,21 +56,20 @@ require_once('./Model/DashboardModel.php'); ?>
               <div class="form-group">
                 <label for="inputName" class="sr-only">Product Category</label>
                 <select class="form-control" id="category_dropdown" name="category_dropdown">
-                  <option value="0">Select Category...</option>
+                  <option>Select Category...</option>
                   <?php if($Cats['status']): ?>
                     <?php foreach ($Cats['data'] as $cat):  ?>
                       <option value="<?php echo $cat['id']; ?>"><?php echo $cat['category_name']; ?></option>
                     <?php endforeach; ?>
                   <?php endif; ?>
-
                 </select>
 
               </div>
               <div class="form-group">
                 <label for="subcategory_dropdown" class="sr-only">Product Sub Category</label>
                 <select class="form-control" id="subcategory_dropdown" name="subcategory_dropdown">
-                  <option value="0">Select subcategory...</option>
-                  <option value="1">Artworks</option>
+                  <option>Select subcategory...</option>
+
                 </select>
 
               </div>
@@ -126,43 +125,33 @@ require_once('./Model/DashboardModel.php'); ?>
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function(){
   // detect change of dropdown
-$("#category_dropdown").change(function(){
+$("#category_dropdown").on("change",function(){
 
     // get id of selected team
-    var category_id=$(this).find(':selected').val();
+    var category_id=$(this).val();
     // set json url
     // var json_url="category_json.php?category_id=" + category_id;
-
-    // get json data
-    // jQuery.getJSON(json_url, function(data){
-    //   // empty contents of sub categories dropdown
-    //  $("#subcategory_dropdown").html("");
-    //  $("#subcategory_dropdown").append("<option value='0'>Select subcategory...</option>");
-    //
-    //  // put new dropdown values to players dropdown
-    //  jQuery.each(data, function(key, val){
-    //    console.log(val.subcategory_name);
-    //      $("#subcategory_dropdown").append("<option value='" + val.id + "'>" + val.subcategory_name + "</option>")
-    //  });
-    // });
     if (category_id) {
 
       $.ajax({
         url:"category_json.php",
         datatype:"json",
         data:{'category_id':category_id},
-        success:function(){
-          console.log("success");
-          $("#subcategory_dropdown").empty();
-          $.each(data,function(key,value){
-            $('#subcategory_dropdown').append('<option value="'+ key +'">'+ value +'</option>');
+        success:function(data){
 
-            // $("#subcategory_dropdown").append('<option value="'+value.id+'">'+value.subcategory_name+'</option>');
+          // console.log("success"+data);
+          $("#subcategory_dropdown").empty();
+          $.each(data.data,function(key,value){
+            $('#subcategory_dropdown').append('<option value="'+ value.id +'">'+ value.subcategory_name +'</option>');
+
+            // $("#subcategor,y_dropdown").append('<option value="'+value.id+'">'+value.subcategory_name+'</option>');
 
           });
 
-        },error:function(){
-          console.log("error");
+        },error:function(xhr,status,error){
+          console.log("error"+console.error);
+          var err=eval("("+ xhr.responseText+")");
+          console.log(err.Message);
         }
       });
     }else {

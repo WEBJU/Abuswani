@@ -30,18 +30,18 @@ $(document).ready(function() {
 
  /* Home Slideshow Vegas
   -----------------------------------------------*/
-  // $(function() {
-  //   $('body').vegas({
-  //       slides: [
-  //           { src: 'images/home.jpg' },
-  //           { src: 'images/home.jpg' },
-  //           { src: 'images/home.jpg' }
-  //       ],
-  //       timer: false,
-  //       transition: [ 'zoomIn', ],
-  //       animation: ['kenburns']
-  //   });
-  // });
+  $(function() {
+    $('body').vegas({
+        slides: [
+            { src: 'images/home.jpg' },
+            { src: 'images/t-acrylic.jpg' },
+            { src: 'images/t-softpastel.jpg' }
+        ],
+        timer: false,
+        transition: [ 'zoomIn', ],
+        animation: ['kenburns']
+    });
+  });
 
 
   /* Team carousel

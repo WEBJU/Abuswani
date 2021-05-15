@@ -14,6 +14,7 @@
     <!-- Script -->
     <script src="./assets/js/jquery.js" charset="utf-8"></script>
     <script src="./assets/js/bootstrap.min.js" charset="utf-8"></script>
+    <script src="./assets/js/custom.js" charset="utf-8"></script>
   </head>
   <body>
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -27,9 +28,6 @@
             <?php if (!isset($_SESSION['auth_status'])) : ?>
               <li class="nav-item">
                 <a class="nav-link <?php if (strtolower($active) === 'login') echo 'active'; ?>" href="<?php echo BASE_URL; ?>index.php">Login</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link <?php if (strtolower($active) === 'register') echo 'active'; ?>" href="<?php echo BASE_URL; ?>register.php" tabindex="-1" aria-disabled="true" style="color:white;">Register</a>
               </li>
             <?php elseif (isset($_SESSION['auth_status'])) : ?>
               <li class="nav-item">

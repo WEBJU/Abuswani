@@ -42,8 +42,8 @@ require_once('./Model/DashboardModel.php'); ?>
                             <td><?php echo $cat['price'] ?></td>
                             <td>+<?php echo $cat['quantity'] ?></td>
                             <td> <img src="images/<?php echo $cat['img'] ?>" alt="" height="50px" width="50px;"> </td>
-                            <td><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" >Edit</button>
-                            <button class="btn btn-danger btn-xs" data-title="Delete" data-toggle="modal" data-target="#delete" >Delete</button></td>
+                            <td><button class="btn btn-primary btn-xs bn-edit" data-title="Edit" data-toggle="modal" data-target="#edit" id="<?php echo $cat['id']; ?>">Edit</button>
+                            <button class="btn btn-danger btn-xs bn-delete" data-title="Delete" data-toggle="modal"  id="<?php echo $cat['id']; ?>">Delete</button></td>
                           </tr>
                         <?php endforeach; ?>
                       <?php endif; ?>
@@ -70,11 +70,11 @@ require_once('./Model/DashboardModel.php'); ?>
           <div class="modal-dialog">
         <div class="modal-content">
               <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="fas fa-minus-octagon" aria-hidden="true"></span></button>
             <h4 class="modal-title custom_align" id="Heading">Edit Art Details</h4>
           </div>
               <div class="modal-body">
-                <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>" enctype="multipart/form-data">
+                <form method="post" id="#frmEdit" action="<?php echo $_SERVER['PHP_SELF'];?>" enctype="multipart/form-data">
 
                 <div class="col-xs-12 col-sm-12 col-md-12 col-xl-12 col-lg-12 mt-4">
                   <div class="form-group">
@@ -138,7 +138,7 @@ require_once('./Model/DashboardModel.php'); ?>
 
               </div>
               <div class="modal-footer ">
-                <button type="button" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Update</button>
+                <button id="update" type="button" class="btn btn-warning btn-lg" style="width: 100%;"><span class="glyphicon glyphicon-ok-sign"></span> Update</button>
               </form>
             <p class="mt-5 text-center mb-3 text-muted">&copy; Abuswani <?php echo date('Y'); ?></p>
           </div>
@@ -169,6 +169,32 @@ require_once('./Model/DashboardModel.php'); ?>
            </div>
           <!-- /.modal-dialog -->
           </div>
+
+
+              <!-- Modal for message-->
+              <div class="modal fade" id="messageModal" tabindex="-1"
+                  role="dialog" data-backdrop="static"
+                  aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                          <div class="modal-header">
+                              <h5 class="modal-title" id="exampleModalLabel">Message</h5>
+                              <button type="button" class="close"
+                                  data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                              </button>
+                          </div>
+                          <div class="modal-body">
+                              <h4 class="text-center" id="msg"></h4>
+                          </div>
+                          <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary"
+                                  data-dismiss="modal">Close</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- Modals ends here -->
     </main>
   </body>
 </html>

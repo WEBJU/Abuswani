@@ -83,10 +83,12 @@
 
 .no-touch .cs-style-4 figure:hover img,
 .cs-style-4 figure.cs-hover img {
-	-webkit-transform: translateX(25%);
-	-moz-transform: translateX(25%);
-	-ms-transform: translateX(25%);
-	transform: translateX(25%);
+	/* -webkit-transform: translateX(5%);
+	-moz-transform: translateX(5%);
+	-ms-transform: translateX(5%);
+	transform: translateX(5%); */
+
+	transform: scale(1.5, 1.5);
 }
 
 .cs-style-4 figcaption {

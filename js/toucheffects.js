@@ -1,6 +1,6 @@
 /** Used Only For Touch Devices **/
 ( function( window ) {
-	
+
 	// for touch devices: add class cs-hover to the figures when touching the items
 	if( Modernizr.touch ) {
 
@@ -67,14 +67,14 @@
 			window.classie = classie;
 		}
 
-		[].slice.call( document.querySelectorAll( 'ul.grid > li > figure' ) ).forEach( function( el, i ) {
-			el.querySelector( 'figcaption > a' ).addEventListener( 'touchstart', function(e) {
-				e.stopPropagation();
-			}, false );
-			el.addEventListener( 'touchstart', function(e) {
-				classie.toggle( this, 'cs-hover' );
-			}, false );
-		} );
+		// [].slice.call( document.querySelectorAll( 'ul.grid > li > figure' ) ).forEach( function( el, i ) {
+		// 	el.querySelector( 'figcaption > a' ).addEventListener( 'touchstart', function(e) {
+		// 		e.stopPropagation();
+		// 	}, false );
+		// 	el.addEventListener( 'touchstart', function(e) {
+		// 		classie.toggle( this, 'cs-hover' );
+		// 	}, false );
+		// } );
 
 	}
 

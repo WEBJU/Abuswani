@@ -1,5 +1,13 @@
 <?php
   class Db {
+    //remote
+
+    // protected $dbName = 'abuswani_abuswani'; /** Database Name */
+    // protected $dbHost = 'localhost'; /** Database Host */
+    // protected $dbUser = 'abuswani_abuswani'; /** Database Root */
+    // protected $dbPass = 'Abu@swani123'; /** Databse Password */
+
+    //local
     protected $dbName = 'abuswani'; /** Database Name */
     protected $dbHost = 'localhost'; /** Database Host */
     protected $dbUser = 'root'; /** Database Root */
