@@ -1,3 +1,3 @@
 <?php
-  define("BASE_URL", 'https://localhost/admin/');
+  define("BASE_URL", 'https://localhost/abuswani/admin/');
  ?>
