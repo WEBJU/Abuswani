@@ -57,6 +57,7 @@ switch ($sub_id) {
   <link href="css/product.css" rel="stylesheet" type="text/css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
 </head>
 <body>
 
@@ -71,44 +72,131 @@ switch ($sub_id) {
     </div>
   </header>
 
-<div class="container">
-  <?php if ($products): ?>
-  <h1><?php echo $subcatory_name ?> Products</h1>
-  <p><?=$total_products?> Products</p>
-  <div class="gallery" id="gallery">
-      <?php foreach ($products as $product): ?>
-         <div class="gallery-item">
-          <div class="content">
-            <img src="admin/images/<?=$product['img']?>" id="<?php echo $product['id'] ?>"  alt="<?=$product['name']?>"></div>
-          </div>
-        <?php endforeach; ?>
-    <?php else: ?>
-      <div style="margin:20px;">
-        <p>There are no <?php echo $subcatory_name ?> products</p>
-        <a class="btn btn-primary" href="index.php">Go Back</a>
+  <div class="container">
+    <?php if ($products): ?>
+    <h1><?php echo $subcatory_name ?> Products</h1>
+    <p><?=$total_products?> Products</p>
+
+    <div class="row">
+      <?php 
+        $productIdentifier = 1;
+        foreach ($products as $product): ?>
+        <div class="col-lg-3 col-md-4 col-xs-6 col-sm-6">
+            <img style="width:100% !important;" src="admin/images/<?=$product['img']?>" id="<?=$productIdentifier?>"  alt="<?=$product['name']?>" onclick="fullscreenImage(<?=$productIdentifier ?>)">
+            <div class="" id="productInfo_<?=$productIdentifier?>" style="display:none;">
+              <h5 style="color:white; text-transformation: capitalize;" id="productName_<?=$productIdentifier?>" ><?=$product['name']?></h5>
+              <h6 style="color:white;">Price: Ksh. <?=$product['price']?></h6>
+              <p>
+                <?=$product['description']?>
+              </p>
+            </div>
+        </div>
+      <?php 
+        $productIdentifier++;
+        endforeach; ?>
+      <?php else: ?>
+        <div style="margin:20px;">
+          <p>There are no <?php echo $subcatory_name ?> products</p>
+          <a class="btn btn-primary" href="index.php">Go Back</a>
+        </div>
+      <?php endif; ?>
+    <div>
+      <!-- The Modal -->
+      <div id="imageModal" class="modal">
+
+      <!-- The Close Button -->
+      <span class="close border border-danger">&times;</span>
+
+      <!-- Modal Content (The Image) -->
+      <div class="row" style="padding:20px 15%;" id= "navigationButtons">
+        <button class="btn btn-sm btn-outline-dark" id="previousBtn" style="float:left;">
+          <i class="fa fa-arrow-left"></i>Previous
+        </button>
+        <button class="btn btn-sm btn-outline-dark" id="nextBtn" style="float:right;">
+          <i class="fa fa-arrow-right"></i>Next
+        </button>
       </div>
-    <?php endif; ?>
+      <div style="position: relative;" onmouseover="changeOpacityInc()" onmouseout="changeOpacityDec()">
+        <img class="modal-content"  id="imageModalSrc" style="background-color: white; min-height:200px; opacity: 1; display: block; height: 100%; height: auto;transition: .5s ease;backface-visibility: hidden;">
+        <!-- Modal Caption (Image Text) -->
+        <div id="imageModalCaption" style="color:white; transition: .5s ease; opacity: 0; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); text-align: center;">
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    //increse opacity
+    var content = document.getElementById("imageModalSrc");
+    var caption = document.getElementById("imageModalCaption");
+    function changeOpacityInc(){
+      caption.style.opacity = 1;
+      content.style.opacity = 0.5;
+    }
+    function changeOpacityDec(){
+      content.style.opacity = 1;
+      caption.style.opacity = 0;
+    }
+    // Get the modal
+    var modal = document.getElementById("imageModal");
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    var modalPhoto = document.getElementById("imageModalSrc");
+    var photoCaptionText = document.getElementById("imageModalCaption");
+    var previousBtn = document.getElementById("previousBtn");
+    var nextBtn = document.getElementById("nextBtn");
+    var navigationButtons = document.getElementById("navigationButtons")
 
+    
+    function fullscreenImage(id){
+      //alert(<?=$productIdentifier?>);
+      //disable and enable button
+      prevDisable="";
+      nextDisabled = "";
+      if(id == 1 ){
+        previousBtn.disabled = true;
+        prevDisable="disabled";
+      }
+      else{
+        previousBtn.disabled = false;
+      }
+      if(id == <?=$productIdentifier-1?> ){
+        nextBtn.disabled = true;
+        nextDisabled = "disabled";
+      }
+      else{
+        nextBtn.disabled = false;
+      }
 
-    <script type="text/javascript">
-    var gallery = document.querySelector('#gallery');
-    var getVal = function (elem, style) { return parseInt(window.getComputedStyle(elem).getPropertyValue(style)); };
-    var getHeight = function (item) { return item.querySelector('.content').getBoundingClientRect().height; };
-    var resizeAll = function () {
-      var altura = getVal(gallery, 'grid-auto-rows');
-      var gap = getVal(gallery, 'grid-row-gap');
-      gallery.querySelectorAll('.gallery-item').forEach(function (item) {
-        var el = item;
-        el.style.gridRowEnd = "span " + Math.ceil((getHeight(item) + gap) / (altura + gap));
-      });
-    };
-    window.addEventListener('resize', resizeAll);
-    gallery.querySelectorAll('.gallery-item').forEach(function (item) {
-      item.addEventListener('click', function () {
-        item.classList.toggle('full');
-      });
-    });
+      var productNameName = document.getElementById("productName_"+id).textContent;
+      var htmlButtons = 
+          '<button class="btn btn-sm btn-outline-dark" id="previousBtn" style="float:left;" '+prevDisable+' onclick="fullscreenImage(('+(id-1)+'))">'+
+            '<i class="fa fa-arrow-left"></i>Previous  '+
+          '</button>'+
+          '<span class="text-center" style="color:white;  text-transform: uppercase; font-size: 150%; padding: 0px 30px;">'+
+            productNameName+
+          '</span>'+
+          '<button class="btn btn-sm btn-outline-dark" id="nextBtn" style="float:right;" '+nextDisabled+' onclick="fullscreenImage(('+(id+1)+'))">'+
+            'Next  <i class="fa fa-arrow-right"></i>'+
+          '</button>';
 
+      //get info on product
+      var productInfo = document.getElementById("productInfo_"+id).innerHTML;
+
+      var photoId = document.getElementById(id);
+      modal.style.display = "block";
+      modalPhoto.src = photoId.getAttribute("src");
+      photoCaptionText.innerHTML = productInfo;
+      navigationButtons.innerHTML = htmlButtons;
+
+      
+    }
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+      modal.style.display = "none";
+    }
   </script>
 </body>
 
