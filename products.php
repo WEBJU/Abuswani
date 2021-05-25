@@ -77,18 +77,20 @@ switch ($sub_id) {
     <h1><?php echo $subcatory_name ?> Products</h1>
     <p><?=$total_products?> Products</p>
 
-    <div class="row">
+    <div class="gallery" id="gallery">
       <?php 
         $productIdentifier = 1;
         foreach ($products as $product): ?>
-        <div class="col-lg-3 col-md-4 col-xs-6 col-sm-6">
+        <div class="gallery-item">
+          <div class="content">
             <img style="width:100% !important;" src="admin/images/<?=$product['img']?>" id="<?=$productIdentifier?>"  alt="<?=$product['name']?>" onclick="fullscreenImage(<?=$productIdentifier ?>)">
             <div class="" id="productInfo_<?=$productIdentifier?>" style="display:none;">
-              <h5 style="color:white; text-transformation: capitalize;" id="productName_<?=$productIdentifier?>" ><?=$product['name']?></h5>
-              <h6 style="color:white;">Price: Ksh. <?=$product['price']?></h6>
+              <h3 style="text-transformation: capitalize;" id="productName_<?=$productIdentifier?>" ><?=$product['name']?></h3>
+              <h5 style="">Price: Ksh. <?=$product['price']?></h5>
               <p>
                 <?=$product['description']?>
               </p>
+            </div>
             </div>
         </div>
       <?php 
@@ -108,18 +110,18 @@ switch ($sub_id) {
       <span class="close border border-danger">&times;</span>
 
       <!-- Modal Content (The Image) -->
-      <div class="row" style="padding:20px 15%;" id= "navigationButtons">
-        <button class="btn btn-sm btn-outline-dark" id="previousBtn" style="float:left;">
+      <div class="display: flex; justify-content: between; text-center " style="padding:20px 15%;" id= "navigationButtons">
+        <button class="btn btn-sm btn-dark" id="previousBtn" style="float:left;">
           <i class="fa fa-arrow-left"></i>Previous
         </button>
         <button class="btn btn-sm btn-outline-dark" id="nextBtn" style="float:right;">
           <i class="fa fa-arrow-right"></i>Next
         </button>
       </div>
-      <div style="position: relative;" onmouseover="changeOpacityInc()" onmouseout="changeOpacityDec()">
-        <img class="modal-content"  id="imageModalSrc" style="background-color: white; min-height:200px; opacity: 1; display: block; height: 100%; height: auto;transition: .5s ease;backface-visibility: hidden;">
+      <div style="position: relative; " onmouseover="changeOpacityInc()" onmouseout="changeOpacityDec()">
+        <img class="modal-content"  id="imageModalSrc" style="">
         <!-- Modal Caption (Image Text) -->
-        <div id="imageModalCaption" style="color:white; transition: .5s ease; opacity: 0; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); text-align: center;">
+        <div id="imageModalCaption" style="background-color:white; transition: .5s ease; opacity: 0; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); -ms-transform: translate(-50%, -50%); text-align: center;">
         </div>
       </div>
     </div>
@@ -130,11 +132,13 @@ switch ($sub_id) {
     var caption = document.getElementById("imageModalCaption");
     function changeOpacityInc(){
       caption.style.opacity = 1;
-      content.style.opacity = 0.5;
+      content.style.opacity = 0.9;
+      content.style.filter = "blur(1px) grayscale(60%)";
     }
     function changeOpacityDec(){
       content.style.opacity = 1;
       caption.style.opacity = 0;
+      content.style.filter = "";
     }
     // Get the modal
     var modal = document.getElementById("imageModal");
@@ -168,13 +172,13 @@ switch ($sub_id) {
 
       var productNameName = document.getElementById("productName_"+id).textContent;
       var htmlButtons = 
-          '<button class="btn btn-sm btn-outline-dark" id="previousBtn" style="float:left;" '+prevDisable+' onclick="fullscreenImage(('+(id-1)+'))">'+
+          '<button class="navigationButtonsK" id="previousBtn" style="float:left;" '+prevDisable+' onclick="fullscreenImage(('+(id-1)+'))">'+
             '<i class="fa fa-arrow-left"></i>Previous  '+
           '</button>'+
-          '<span class="text-center" style="color:white;  text-transform: uppercase; font-size: 150%; padding: 0px 30px;">'+
+          '<span class="text-center d-sm-block" style="color:white;  text-transform: uppercase; font-size: 110%; padding: 0px 30px;">'+
             productNameName+
           '</span>'+
-          '<button class="btn btn-sm btn-outline-dark" id="nextBtn" style="float:right;" '+nextDisabled+' onclick="fullscreenImage(('+(id+1)+'))">'+
+          '<button class="navigationButtonsK" id="nextBtn" style="float:right;" '+nextDisabled+' onclick="fullscreenImage(('+(id+1)+'))">'+
             'Next  <i class="fa fa-arrow-right"></i>'+
           '</button>';
 
