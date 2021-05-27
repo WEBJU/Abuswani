@@ -86,7 +86,7 @@ switch ($sub_id) {
             <img style="width:100% !important;" src="admin/images/<?=$product['img']?>" id="<?=$productIdentifier?>"  alt="<?=$product['name']?>" onclick="fullscreenImage(<?=$productIdentifier ?>)">
             <div class="" id="productInfo_<?=$productIdentifier?>" style="display:none;">
               <h3 style="text-transformation: capitalize;" id="productName_<?=$productIdentifier?>" ><?=$product['name']?></h3>
-              <h5 style="">Price: Ksh. <?=$product['price']?></h5>
+              <h4 style="">Price: Ksh. <?=$product['price']?></h4>
               <p>
                 <?=$product['description']?>
               </p>
@@ -133,7 +133,7 @@ switch ($sub_id) {
     function changeOpacityInc(){
       caption.style.opacity = 1;
       content.style.opacity = 0.9;
-      content.style.filter = "blur(1px) grayscale(60%)";
+      content.style.filter = "blur(5px) grayscale(5%)";
     }
     function changeOpacityDec(){
       content.style.opacity = 1;
